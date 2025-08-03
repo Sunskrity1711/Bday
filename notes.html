@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dear Tushar 💖</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: url('assets/textures/paper.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      color: #4a4a4a;
+      height: 100%;
+      overflow-x: hidden;
+    }
+
+    .lock-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .lock-screen input {
+      padding: 10px;
+      font-size: 1em;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .lock-screen button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      background: #d63384;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .letter-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 25px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+      margin-top: 60px;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: 'Cursive';
+      color: #d63384;
+      margin-bottom: 30px;
+    }
+
+    .love-letter {
+      font-size: 1.1em;
+      white-space: pre-line;
+      text-align: justify;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 30px;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+
+    .bg-fade {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 150px;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    @media (max-width: 600px) {
+      .letter-container {
+        padding: 30px 15px;
+      }
+      .love-letter {
+        font-size: 1em;
+      }
+      .bg-fade {
+        width: 100px;
+        top: 10px;
+        right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔒 Unlock Screen -->
+  <div class="lock-screen" id="lockScreen">
+    <h2>🔐 Enter Your Secret Code</h2>
+    <input type="password" id="unlockInput" placeholder="Hint: your name 😉" />
+    <button onclick="unlock()">Unlock</button>
+  </div>
+
+  <!-- 🎶 Background Music -->
+  <audio id="bgm" src="assets/music/bg-music.mp3" loop></audio>
+
+  <!-- 🖼️ Faded Background Photo -->
+  <img class="bg-fade" src="assets/photos/photo3.jpg" alt="bg-love" />
+
+  <!-- 💌 Love Letter -->
+  <div class="letter-container" id="letter" style="display: none;">
+    <h1>To Tushar, On Your Birthday 💝</h1>
+    <div class="love-letter" id="typedMessage"></div>
+    <a href="index.html" class="back-link">⬅ Back to Home</a>
+  </div>
+
+  <!-- ✅ JavaScript (only once!) -->
+  <script>
+    function unlock() {
+      const input = document.getElementById("unlockInput").value.trim().toLowerCase();
+      if (input === "tushar") {
+        document.getElementById("lockScreen").style.display = "none";
+        document.getElementById("letter").style.display = "block";
+
+        const bgm = document.getElementById("bgm");
+        bgm.play().catch(error => {
+          console.log("Autoplay blocked:", error);
+        });
+
+        typeWriter(messageText, "typedMessage", 35);
+      } else {
+        alert("Oops! Try again 😄");
+      }
+    }
+
+    const messageText = `My love,
+
+Happiest Birthday, Tushar! 🎂💖
+
+I can’t put into words how incredibly grateful I am for this past year with you — but let me try.
+
+From the very first time we talked to the millionth laugh we’ve shared, you’ve filled my life with so much warmth, love, and happiness. The past 365 days have been the most beautiful journey I’ve ever experienced — full of midnight calls, silly jokes, spontaneous hugs, unexpected adventures, and quiet moments that mean the world to me.
+
+You’ve supported me when I doubted myself, held my hand when I was scared, and made me smile even on the days I didn’t think I could. With you, life feels easier, brighter, and infinitely more magical.
+
+You’ve shown me what love truly means — not just in words, but in how you look at me, how you listen, and how you care. And for that, I’ll always be thankful.
+
+Today is your day, and I hope this little surprise reminds you of just how deeply you are loved — not only for what you do, but for who you are. I’m so lucky to love you and be loved by you.
+
+Here's to everything we’ve shared and all that’s yet to come. May this birthday be the beginning of your best year yet, filled with joy, growth, and love beyond measure.
+
+I love you endlessly.
+
+Forever yours,
+❤️`;
+
+    function typeWriter(text, elementId, speed = 50) {
+      let i = 0;
+      const element = document.getElementById(elementId);
+      function type() {
+        if (i < text.length) {
+          element.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+    
+  </script>
+</body>
+</html>

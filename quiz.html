@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💘 Our Mini Quiz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #ffe4ec, #ffe0f7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .quiz-container {
+      background-color: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      color: #d63384;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      font-size: 1.2em;
+      margin: 20px 0 10px;
+    }
+
+    .options button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffd6e8;
+      color: #333;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .options button:hover {
+      background-color: #ffc2dd;
+    }
+
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .score {
+      margin-top: 20px;
+      font-size: 1.4em;
+      color: #d63384;
+    }
+
+    .final {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .back-link {
+      display: block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #d63384;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+     <audio id="bgm" src="assets/music/photo-music.mp3" autoplay loop></audio>
+  <div class="quiz-container">
+    <h1>💘 How Well Do You Know Me?</h1>
+    <div id="quiz"></div>
+    <div class="score" id="scoreBox"></div>
+    <div class="final" id="finalMsg"></div>
+    <a href="index.html" class="back-link">⬅ Back to Home</a>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What’s my favorite way to relax?",
+        options: ["Watching a movie", "Cuddling", "Going for a walk"],
+        answer: "Cuddling"
+      },
+      {
+        question: "What is my fav?",
+        options: ["Maggi", "Tushar", "Momos", "Pani Puri"],
+        answer: "Tushar"
+      },
+      {
+        question: "What color reminds you most of me?",
+        options: ["Red", "Blue", "Pink", "Purple"],
+        answer: "Purple"
+      }
+    ];
+
+    let currentQ = 0;
+    let score = 0;
+
+    const quiz = document.getElementById("quiz");
+    const scoreBox = document.getElementById("scoreBox");
+    const finalMsg = document.getElementById("finalMsg");
+
+    function loadQuestion() {
+      const q = quizData[currentQ];
+      quiz.innerHTML = `
+        <div class="question">${q.question}</div>
+        <div class="options">
+          ${q.options.map(option => `<button onclick="checkAnswer('${option}')">${option}</button>`).join("")}
+        </div>
+        <div class="feedback" id="feedback"></div>
+      `;
+    }
+
+    function checkAnswer(selected) {
+      const correct = quizData[currentQ].answer;
+      const feedback = document.getElementById("feedback");
+
+      if (selected === correct) {
+        score++;
+        feedback.innerHTML = "✅ Correct! You're adorable 💖";
+        feedback.style.color = "green";
+      } else {
+        feedback.innerHTML = `❌ Oops! It was "${correct}"`;
+        feedback.style.color = "red";
+      }
+
+      currentQ++;
+      if (currentQ < quizData.length) {
+        setTimeout(loadQuestion, 1200);
+      } else {
+        setTimeout(showScore, 1200);
+      }
+    }
+
+    function showScore() {
+      quiz.innerHTML = "";
+      let hearts = "❤️".repeat(score);
+      scoreBox.innerHTML = `You scored: ${hearts}`;
+      finalMsg.innerHTML = score === quizData.length
+        ? "You know me so well! I'm blushing 💕"
+        : "Aww, you tried your best and that’s what matters 💗";
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>
