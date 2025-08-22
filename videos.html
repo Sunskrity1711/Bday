@@ -1,56 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>💖 Our Story</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #ffe6eb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>💖 Our Story</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: #ffe6eb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      }
 
-    video {
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-    }
+      video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
 
-    .back-btn {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: rgba(255, 255, 255, 0.6);
-      padding: 10px 15px;
-      border-radius: 8px;
-      color: #d63384;
-      font-weight: bold;
-      text-decoration: none;
-      z-index: 10;
-      transition: background 0.3s ease;
-    }
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 10px 15px;
+        border-radius: 8px;
+        color: #d63384;
+        font-weight: bold;
+        text-decoration: none;
+        z-index: 10;
+        transition: background 0.3s ease;
+      }
 
-    .back-btn:hover {
-      background-color: rgba(255, 255, 255, 0.9);
-    }
-  </style>
-</head>
-<body>
+      .back-btn:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 🔙 Back to Home -->
+    <a href="index.html" class="back-btn">⬅ Back</a>
 
-  <!-- 🔙 Back to Home -->
-  <a href="index.html" class="back-btn">⬅ Back</a>
-
-  <!-- 🎥 Fullscreen Video -->
-  <video controls autoplay muted>
-    <source src="assets/videos/video1.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-
-</body>
+    <!-- 🎥 Fullscreen Video -->
+    <video controls autoplay muted>
+      <source src="assets/videos/video1.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </body>
 </html>

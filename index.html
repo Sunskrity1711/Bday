@@ -1,143 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday 🎂</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday 🎂</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(120deg, #ffd6e8, #ffe9f4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-      padding: 20px;
-      overflow: hidden;
-    }
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(120deg, #ffd6e8, #ffe9f4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+        overflow: hidden;
+      }
 
-    .container {
-      max-width: 400px;
-      width: 100%;
-      z-index: 2;
-      display: none; /* Hidden until unlocked */
-    }
+      .container {
+        max-width: 400px;
+        width: 100%;
+        z-index: 2;
+        display: none; /* Hidden until unlocked */
+      }
 
-    #greeting {
-      font-size: 2em;
-      margin-bottom: 10px;
-      color: #d63384;
-      font-family: 'Pacifico', cursive;
-    }
+      #greeting {
+        font-size: 2em;
+        margin-bottom: 10px;
+        color: #d63384;
+        font-family: "Pacifico", cursive;
+      }
 
-    .subtext {
-      font-size: 1em;
-      margin-bottom: 30px;
-      color: #6c757d;
-    }
+      .subtext {
+        font-size: 1em;
+        margin-bottom: 30px;
+        color: #094f8d;
+      }
 
-    .folders {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+      .folders {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
 
-    .folder {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
-      font-size: 1.4em;
-      font-family: 'Dancing Script', cursive;
-      text-decoration: none;
-      color: #333;
-      transition: transform 0.2s ease, box-shadow 0.3s ease;
-    }
+      .folder {
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(214, 51, 132, 0.2);
+        font-size: 1.4em;
+        font-family: "Dancing Script", cursive;
+        text-decoration: none;
+        color: #333;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+      }
 
-    .folder:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 25px rgba(214, 51, 132, 0.3);
-    }
+      .folder:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 25px rgba(214, 51, 132, 0.3);
+      }
 
-    .lock-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.95);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
+      .lock-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.95);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
 
-    .lock-screen input {
-      padding: 10px;
-      font-size: 1em;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+      .lock-screen input {
+        padding: 10px;
+        font-size: 1em;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
 
-    .lock-screen button {
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #d63384;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
+      .lock-screen button {
+        margin-top: 10px;
+        padding: 10px 15px;
+        background: #d63384;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
     <audio id="bgm" src="assets/music/bday.mp3" autoplay loop></audio>
-  <!-- 🔐 Lock Screen -->
-  <div class="lock-screen" id="lockScreen">
-    <h2>🔐 Enter Secret Code</h2>
-    <input type="password" id="unlockInput" placeholder="Enter secret-code 😉" />
-    <button onclick="unlock()">Unlock</button>
-  </div>
-
-  <!-- 🎁 Main Site -->
-  <div class="container" id="mainContent">
-    <h1 id="greeting">🎉 Happiest Birthday, My Love! 🎉</h1>
-    <p class="subtext">Tap a folder to open a surprise ✨</p>
-    <div class="folders">
-      <a class="folder" href="photos.html">📸 Sweet Memories</a>
-      <a class="folder" href="videos.html">🎥 Just Us</a>
-      <a class="folder" href="notes.html">💌 For You Jaan</a>
-      <a class="folder" href="quiz.html">🥰Let's Test you Babydoll😉</a>
+    <!-- 🔐 Lock Screen -->
+    <div class="lock-screen" id="lockScreen">
+      <h2>🔐 Enter Secret Code</h2>
+      <input
+        type="password"
+        id="unlockInput"
+        placeholder="Enter secret-code 😉"
+      />
+      <button onclick="unlock()">Unlock</button>
     </div>
-  </div>
+    <!-- 🎁 Main Site -->
+    <div class="container" id="mainContent">
+      <h1 id="greeting">🎉 Happiest Birthday, My Love! 🎉</h1>
+      <p class="subtext">Tap a folder to open a surprise ✨</p>
+      <div class="folders">
+        <a class="folder" href="photos.html">📸 Sweet Memories</a>
+        <a class="folder" href="videos.html">🎥 Just Us</a>
+        <a class="folder" href="notes.html">💌 For You Jaan</a>
+        <a class="folder" href="quiz.html">🥰Enter😉</a>
+      </div>
+    </div>
 
-  <script>
-    window.onload = function () {
-      const isUnlocked = sessionStorage.getItem("unlocked");
-      if (isUnlocked === "true") {
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
+    <script>
+      window.onload = function () {
+        const isUnlocked = sessionStorage.getItem("unlocked");
+        if (isUnlocked === "true") {
+          document.getElementById("lockScreen").style.display = "none";
+          document.getElementById("mainContent").style.display = "block";
+        }
+      };
+      // Unlock function
+      function unlock() {
+        const input = document
+          .getElementById("unlockInput")
+          .value.trim()
+          .toLowerCase();
+        if (input === "2022") {
+          sessionStorage.setItem("unlocked", "true");
+          document.getElementById("lockScreen").style.display = "none";
+          document.getElementById("mainContent").style.display = "block";
+        } else {
+          alert("Oops! Try again 😄");
+        }
       }
-    };
-
-    // Unlock function
-    function unlock() {
-      const input = document.getElementById("unlockInput").value.trim().toLowerCase();
-      if (input === "2022") { 
-        sessionStorage.setItem("unlocked", "true");
-        document.getElementById("lockScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-      } else {
-        alert("Oops! Try again 😄");
-      }
-    }
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>
